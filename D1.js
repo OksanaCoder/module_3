@@ -327,7 +327,21 @@ In raindrop-speak, this would be a simple "Plong".
 In raindrop-speak, this would be a "PlingPlang".
 34 has four factors: 1, 2, 17, and 34.
 In raindrop-speak, this would be "34".
+*/
+function convertNum(n) {
+  if (n % 3 == 0 ) {
+    console.log('Pling');
+  } else if (n % 5 == 0) {
+    console.log('Plang');
+  } else if (n % 7 == 0) {
+    console.log('Plong');
+  } else {
+     console.log(n.toString());  
+  }
 
+}
+console.log( convertNum(12));
+/*
 20)
 Convert a phrase to its acronym, like Portable Network Graphics to its acronym (PNG).
 
