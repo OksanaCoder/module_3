@@ -228,23 +228,90 @@ console.log(indexOfMaxValue);
 14)
 
 Write a JavaScript program to get the largest even number from an array of integers.
+*/
+function max_even(arra) {
 
+    arra.sort((x, y) => y - x);
+  
+    for (var i = 0; i < arra.length; i++) {
+      if (arra[i] % 2 == 0)
+        return arra[i];
+      }
+    }
+  
+  console.log(max_even([20, 40, 200]));
+  console.log(max_even([20, 40, 200, 301]));
+  
+
+/*
 15)
 
 Write a JavaScript program to check two given numbers and return true if one of the number is 50 or if their sum is 50.
-
+*/
+function test50(x, y) 
+{
+  return ((x == 50 || y == 50) || (x + y == 50));
+}
+console.log(test50(50, 50))
+console.log(test50(20, 50))
+console.log(test50(20, 20))
+console.log(test50(20, 30)) 
+/*
 16)
 
 Write a JavaScript program to check from two given integers, whether one is positive and another one is negative.
+*/
+function positive_negative(x, y)
+{
+  if ((x < 0 && y > 0) || x > 0 && y < 0) 
+  {
+    return true;
+  }
+  else 
+  {
+    return false;
+  }
+}
+console.log(positive_negative(2, 2));
+console.log(positive_negative(-2, 2));
+console.log(positive_negative(2, -2));
+console.log(positive_negative(-2, -2));
 
+/*
 17)
 
 Write a JavaScript program to create new string with first 3 characters are in lower case and the others in upper case. If the string length is less than 3 convert all the characters in upper case. 
+*/
+function upper_lower(str) {
+    if (str.length < 3) {
+      return str.toUpperCase();
+    }
+    front_part = (str.substring(0, 3)).toLowerCase();
+    back_part = str.substring(3, str.length);  
+    return front_part + back_part;
+  }
+  console.log(upper_lower("Python"));
+  console.log(upper_lower("Py"));
+  console.log(upper_lower("JAVAScript"));
 
+/*
 18)
 
 Write a JavaScript program to compute the sum of the two given integers, If the sum is in the range 50..80 return 65 other wise return 80.
+*/
+function sortaSum(x, y) 
+ {
+  const sum_nums = x + y;
+  if (sum_nums >= 50 && sum_nums <= 80) {
+    return 65;
+  }
+  return 80;
+}
 
+console.log(sortaSum(30,20));
+console.log(sortaSum(90,80));
+
+/*
 19)
 
 Convert a number to a string, the contents of which depend on the number's factors.
