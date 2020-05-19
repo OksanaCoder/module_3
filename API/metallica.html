@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&display=swap" rel="stylesheet">   
+   <style>
+     body { 
+       background-color: grey;
+       color: #fff;       
+       font-family: 'Balsamiq Sans', cursive;
+
+     }
+    .img-singer { 
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      margin: 0 auto;
+    }
+    h5 {
+      color: #000;
+      font-size: 14px;
+    }
+     .card {
+       margin-bottom: 5px;
+       margin-right: 2px;
+       background: none;
+       border: none;         
+     } 
+     .btn-success { 
+       border-radius: 5px; 
+
+     }
+   
+   
+   
+ 
+  
+   </style>
+  </head>
+  <body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1>List of albums</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <img src="" alt="eminem" class="img-singer">
+      </div>
+      <div class="col-4">
+        <img src="" alt="metallica" class="img-singer">
+      </div>
+      <div class="col-4">
+        <img src="" alt="behemoth" class="img-singer">
+      </div>
+    </div>
+  </div> -->
+    <div class="container">
+      <div class="row no-gutter place">
+      
+               
+      </div>
+    </div>
+     <!-- <ul class="list">
+     </ul> -->
+   <div class="box"></div>
+     <!-- <button onclick="loadData()">Click me!</button> -->
+    </div>
+
+    <p>
+      Generate automatically 3 lists based on the "search API" response
+    </p>
+    <ul>
+      <li>es.: https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem</li>
+      <li>es.: https://deezerdevs-deezer.p.rapidapi.com/search?q=metallica</li>
+      <li>es.: https://deezerdevs-deezer.p.rapidapi.com/search?q=behemoth</li>
+    </ul>
+
+    <!-- <h3>
+      Load them during page load, and create the collections based on the API
+      response.
+    </h3>
+
+    <h4>
+      [EXTRA] Make the central part of the page scrollable both horizontally and
+      vertically
+    </h4>
+
+    <h4>
+        [EXTRA] Add a "List albums" button. When pressed, he should create and display a list of albums on the page
+    </h4>
+
+    <h4>
+        [EXTRA] Add a "Count Unique" button. When pressed, he should log the number of unique albums on the page
+    </h4>
+
+    <h4>
+      [EXTRA] Add a search button to change the API query
+    </h4> -->
+ 
+    <script>
+    window.onload = function loadData() {
+      fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=metallica", {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+        "x-rapidapi-key": "45ea72d0cbmsh5a68a7ddaa76fefp17c953jsn0a280e030350"
+      }
+    })
+    .then(response => {
+      return response.json();
+      
+    })
+    .then(
+      
+      json => {
+      console.log(json);
+      //     const list = document.querySelector('.list');
+      //     json.data.forEach(element => {
+      //   const listElem = document.createElement('li')
+      //   const textNode = document.createTextNode(element.title)
+      //   listElem.appendChild(textNode)
+      //   list.appendChild(listElem)
+      // });
+    
+      json.data.forEach(element => {
+        const container = document.querySelector('.place');
+        let card  = document.createElement('div');
+        card.classList.add('card');
+        card.classList.add('col-lg-2');
+        card.classList.add('col-md-3');
+        card.classList.add('col-sm-4');
+
+
+        let oImg = document.createElement("img");
+        oImg.src = element.album.cover_big;
+        oImg.alt = element.album.title;
+     
+        oImg.classList.add('card-img-top');
+        oImg.classList.add('img-singer');
+
+        let cardBody = document.createElement('div');
+        cardBody.classList.add('crad-body');
+        let title = document.createElement('h5');
+        title.innerHTML = element.album.title;
+        cardBody.appendChild(title);
+         let btn = document.createElement('button');
+         btn.classList.add('btn-success');
+         btn.innerHTML = 'More';
+
+         cardBody.appendChild(btn);
+      
+        card.appendChild(oImg);
+        card.appendChild(cardBody);
+        container.appendChild(card);
+      });
+     }
+    )
+    .catch(err => {
+      console.log(err);
+    });
+
+    }
+ 
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  </body>
+</html>
