@@ -51,16 +51,29 @@
          
             <img src="https://www.eminem.pro/wp-content/uploads/2020/02/em-2020-oskar.jpg" alt="eminem album" onclick="newPage()">
             <h4 class="image-wrapper">Eminem</h4>
+            <select class="custom-select" id="inputGroupSelect04">
+              <option selected>Choose...</option>
+             
+            </select>
           </div>
           <div class="col-4">
             <img src="https://townsquare.media/site/366/files/2019/07/Behemoth-Knotfest-MattStasi-0050.jpg?w=980&q=75" alt="behemoth album" href="behemoth.html" onclick="newPage2()">
             <h4 class="image-wrapper">Behemoth</h4>
+            <select class="custom-select" id="inputGroupSelect05">
+              <option selected>Choose...</option>
+             
+            </select>
           </div>
           <div class="col-4">
             <img src="https://www.soyuz.ru/public/uploads/files/2/7358733/20190613214143871c69dd09.jpg" alt=" metallica album" href="metallica.html" onclick="newPage3()">
             <h4 class="image-wrapper">Metallica</h4>
+            <select class="custom-select" id="inputGroupSelect06">
+              <option selected>Choose...</option>
+             
+            </select>
           </div>    
       </div>
+       
     </div>
   
 <script>
@@ -74,7 +87,137 @@
   document.location.href = 'metallica.html';
  }
  
+ window.onload = function loadData() {
+      fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+        "x-rapidapi-key": "45ea72d0cbmsh5a68a7ddaa76fefp17c953jsn0a280e030350"
+      }
+    })
+    .then(response => {
+      return response.json();
+      
+    })
+    .then(
+      
+      json => {
+      console.log(json);
+      //     const list = document.querySelector('.list');
+      //     json.data.forEach(element => {
+      //   const listElem = document.createElement('li')
+      //   const textNode = document.createTextNode(element.title)
+      //   listElem.appendChild(textNode)
+      //   list.appendChild(listElem)
+      // });
     
+      json.data.forEach(element => {
+        const container = document.querySelector('#inputGroupSelect04');
+        let card  = document.createElement('option');
+         card.innerHTML = element.album.title;
+        container.appendChild(card);
+
+
+       
+      
+     
+       });
+     })
+
+        
+     
+    
+    .catch(err => {
+      console.log(err);
+    });
+    fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=behemoth", {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+        "x-rapidapi-key": "45ea72d0cbmsh5a68a7ddaa76fefp17c953jsn0a280e030350"
+      }
+    })
+    .then(response => {
+      return response.json();
+      
+    })
+    .then(
+      
+      json => {
+      console.log(json);
+      //     const list = document.querySelector('.list');
+      //     json.data.forEach(element => {
+      //   const listElem = document.createElement('li')
+      //   const textNode = document.createTextNode(element.title)
+      //   listElem.appendChild(textNode)
+      //   list.appendChild(listElem)
+      // });
+    
+      json.data.forEach(element => {
+        const container = document.querySelector('#inputGroupSelect05');
+      
+        let card  = document.createElement('option');
+         card.innerHTML = element.album.title;
+        container.appendChild(card);
+
+
+       
+      
+     
+       });
+     })
+
+        
+     
+    
+    .catch(err => {
+      console.log(err);
+    });
+    fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=metallica", {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+        "x-rapidapi-key": "45ea72d0cbmsh5a68a7ddaa76fefp17c953jsn0a280e030350"
+      }
+    })
+    .then(response => {
+      return response.json();
+      
+    })
+    .then(
+      
+      json => {
+      console.log(json);
+      //     const list = document.querySelector('.list');
+      //     json.data.forEach(element => {
+      //   const listElem = document.createElement('li')
+      //   const textNode = document.createTextNode(element.title)
+      //   listElem.appendChild(textNode)
+      //   list.appendChild(listElem)
+      // });
+    
+      json.data.forEach(element => {
+        const container = document.querySelector('#inputGroupSelect06');
+      
+        let card  = document.createElement('option');
+         card.innerHTML = element.album.title;
+        container.appendChild(card);
+
+
+       
+      
+     
+       });
+     })
+
+        
+     
+    
+    .catch(err => {
+      console.log(err);
+    });
+
+    }
 </script>
 
     <!-- <p>
