@@ -12,8 +12,8 @@
           +  2) Add a "add to cart button"
            + 3) When the button is pressed, change the style of the item and add it to another list
            + 4) Add "skip" button next to each item
-            5) When pressed, the button should remove from the page the item not interesting from the user
-            6) Add a "search bar". When the user types more than 3 chars, you should filter the content of the page to show only the items with a matching name (hint: use .filter method)
+           + 5) When pressed, the button should remove from the page the item not interesting from the user
+           + 6) Add a "search bar". When the user types more than 3 chars, you should filter the content of the page to show only the items with a matching name (hint: use .filter method)
             7) Allow the user to delete items from the cart list
             
             [EXTRA]
@@ -40,6 +40,10 @@
   .card { 
       margin-bottom: 5px;
   }
+  #elastic { 
+      border: 1px solid grey;
+      width: 100%;
+  }
 </style>
 </head>
 
@@ -53,14 +57,28 @@
             </div>
         </div>
     </div>
+    
+    <nav class="navbar navbar-inverse bg-inverse fixed-top bg-faded">
+        <div class="row">
+            <div class="col">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart">Cart (<span class="total-count"></span>)</button><button class="clear-cart btn btn-danger">Clear Cart</button></div>
+        </div>
+    </nav>
    <div class="container">
+    <div class="row">
+        <div class="col-12 form-control-group">
+             <input type="text" id="elastic" placeholder="search..">
+        </div>
+    </div>
        <div class="row">
-           <div class="col-12 cart">
-             
+           <div class="col-12">
+              <ul class="cart">
+              
+              </ul>
            </div>
        </div>
         <div class="row mainContainer">
-  
+            
         </div>
    </div>
 
@@ -90,9 +108,14 @@
               
                <div class="group">
                 <smal>$ ${element.price}</smal>
-                    <button type="button" class="btn btn-sm btn-success">
+                 <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-success btn-outline-secondary">
                       Add to cart
                     </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary skip">
+                      Skip
+                    </button>
+                </div>
   
                 </div>
               </div>
@@ -101,17 +124,46 @@
          let btns = document.querySelectorAll('.btn-success');
          btns.forEach(it => {
              it.addEventListener('click', function(e){
-                 let current = e.target.parentElement.parentElement.parentElement;          
+                 let current = e.target.parentElement.parentElement.parentElement.parentElement;          
                  current.style.display = 'none';
-
-
+                
                  let cart = document.querySelector('.cart');
-            
-                cart.innerHTML = JSON.stringify(current);
-                 
+                 let li = document.createElement('li');
+                 li.innerHTML= it.parentElement.parentElement.parentElement.innerHTML;
+                 cart.appendChild(li);
 
              });
-         })
+         });
+
+         let skip = document.querySelectorAll('.skip');
+         skip.forEach(one=> {
+             one.addEventListener('click', function(e){
+                 let skipThis = e.target.parentElement.parentElement.parentElement.parentElement;          
+                 skipThis.style.display = 'none';
+             });
+         });
+         
+         document.querySelector('#elastic').oninput = function(){
+             let val = this.value.trim();
+             let itemsList = json;
+             if (val != '') {
+                 itemsList.forEach(el => function () {
+                     if(el.title.innerText.search(val) == -1){
+                         el.style.display = 'none';
+                     } else {
+                         el.style.display= 'block';
+                     };
+                 });
+             } else {
+                 itemsList.forEach(o => function(){
+                    o.style.display = 'none';
+                 });
+             }
+         }
+        // let delBtn = document.createElement('button');
+        // button.innerHTML = 'Delete';
+        // delBtn.appendChild();
+
     
      })
 
