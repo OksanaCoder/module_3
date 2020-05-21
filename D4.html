@@ -11,7 +11,7 @@
            + 1) Display the list of items available on the page using template literals `` and .forEach
           +  2) Add a "add to cart button"
            + 3) When the button is pressed, change the style of the item and add it to another list
-            4) Add "skip" button next to each item
+           + 4) Add "skip" button next to each item
             5) When pressed, the button should remove from the page the item not interesting from the user
             6) Add a "search bar". When the user types more than 3 chars, you should filter the content of the page to show only the items with a matching name (hint: use .filter method)
             7) Allow the user to delete items from the cart list
@@ -37,6 +37,9 @@
       display: flex;
       justify-content: space-between;
   }
+  .card { 
+      margin-bottom: 5px;
+  }
 </style>
 </head>
 
@@ -51,15 +54,20 @@
         </div>
     </div>
    <div class="container">
+       <div class="row">
+           <div class="col-12 cart">
+             
+           </div>
+       </div>
         <div class="row mainContainer">
-
+  
         </div>
    </div>
 
     <script>
         window.onload = function(){
 
-    fetch("https://striveschool.herokuapp.com/books")
+    fetch("https://striveschool.herokuapp.com/books?offset=0&limit=50")
     .then(response => {
       return response.json();
       
@@ -72,7 +80,7 @@
         //  books  = json.data;
          json.forEach(element => {
            box.innerHTML += `
-             <div class=col-sm-3 col-md-2 col-lg-2 card">
+             <div class="col-sm-6 col-md-4 col-lg-3 card">
              <img src="${element.img}" class="card-img-top">
              <div class="card-body">
                 <p class="card-text">
@@ -92,8 +100,16 @@
          });
          let btns = document.querySelectorAll('.btn-success');
          btns.forEach(it => {
-             it.addEventListener('click', function(){
-                it.parentElement.parentElement.parentElement.style.display = 'none';
+             it.addEventListener('click', function(e){
+                 let current = e.target.parentElement.parentElement.parentElement;          
+                 current.style.display = 'none';
+
+
+                 let cart = document.querySelector('.cart');
+            
+                cart.innerHTML = JSON.stringify(current);
+                 
+
              });
          })
     
