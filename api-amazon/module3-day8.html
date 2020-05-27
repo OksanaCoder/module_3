@@ -13,6 +13,25 @@
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
     crossorigin="anonymous"
   />
+  <style>
+    .item {
+      border-bottom: 1px solid grey;
+      padding: 20px;
+      height: 100px;
+      align-items: center;
+    }
+    .back {
+      background: #000;
+      color: #fff;
+      height: 50px;
+      align-items: center;
+    }
+    .img-top {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+    }
+  </style>
   <title>AMAZON</title>
     <!--
           
@@ -81,7 +100,17 @@
         </ul>
       </div>
     </nav>
-    <div class="container">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 item back" style="display:flex; justify-content: space-between">
+          <span>Img</span>
+           <span>Name</span>
+           <span>Decription</span>
+          <span>Brand</span>
+          <span>Price</span>
+       
+        </div>
+      </div>
       <div class="row box">
         
       </div>
@@ -98,14 +127,17 @@
           data.forEach(element => {
     
              dataDiv.innerHTML += `
-             <div class="card">
-            <img class="card-img-top" src="${element.img}" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">${element.name}</h5>
-              <p class="card-text">${element.description}</p>
-              <span>${element.brand}</p>
-              <span>${element.price}</span>
-            </div>
+          <div class="col-12 item" style="display:flex; justify-content: space-between">
+            <img class="img-top" src="${element.img}" alt="Item image">
+        
+                <span>${element.name}</span>
+                <span>${element.description}</span>
+         
+         
+              <i>${element.brand}</i>
+              <span>$${element.price}</span>
+          
+         
           </div>`
           });
         } else {
