@@ -48,6 +48,17 @@
         <h1>List of albums</h1>
       </div>
     </div>
+    <div class="row">
+      <div class="col-12">
+        <input type="text" placeholder="Search.." name="search" id="search">
+        <button type="submit" class="subm mb-3">Submit</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 list">
+
+      </div>
+    </div>
   </div>
 
   <!-- <div class="container">
@@ -96,15 +107,6 @@
      <!-- <button onclick="loadData()">Click me!</button> -->
     </div>
 
-    <p>
-      Generate automatically 3 lists based on the "search API" response
-    </p>
-    <ul>
-      <li>es.: https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem</li>
-      <li>es.: https://deezerdevs-deezer.p.rapidapi.com/search?q=metallica</li>
-      <li>es.: https://deezerdevs-deezer.p.rapidapi.com/search?q=behemoth</li>
-    </ul>
-
     <!-- <h3>
       Load them during page load, and create the collections based on the API
       response.
@@ -128,6 +130,50 @@
     </h4> -->
  
     <script>
+
+
+
+
+  let btnCl = document.querySelector('.subm');
+  btnCl.addEventListener('click', function(){
+    let inpSearch = document.querySelector('#search').value;
+    let list = document.querySelector('.list');
+        let ul = document.createElement('ul');
+        let li = document.createElement('li');
+        li.innerText = inpSearch;
+        ul.appendChild(li);
+        list.appendChild(ul);
+  })
+
+        // if (inpSearch.length > 2) {
+        //   fetch(
+        //     "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + searchQuery,
+        //     {
+        //       method: "GET",
+        //       "headers": {
+        //     "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+        //     "x-rapidapi-key": "45ea72d0cbmsh5a68a7ddaa76fefp17c953jsn0a280e030350"
+        //   }
+        //     }
+        //   )
+        //     .then((response) => {
+        //       if (response.ok) {
+        //         return response.json();
+        //       }
+        //     })
+        //     .then((artists) => {
+        //       let songs = artists.data;
+        //       let div = document.createElement('div');
+        //       document.appendChild(div);
+             
+        //     })
+        //     .catch((error) => {
+        //       console.log(error);
+        //     });
+        // }
+
+      
+
     window.onload = function loadData() {
       fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
       "method": "GET",
@@ -144,14 +190,7 @@
       
       json => {
       console.log(json);
-      //     const list = document.querySelector('.list');
-      //     json.data.forEach(element => {
-      //   const listElem = document.createElement('li')
-      //   const textNode = document.createTextNode(element.title)
-      //   listElem.appendChild(textNode)
-      //   list.appendChild(listElem)
-      // });
-    
+      
       json.data.forEach(element => {
         const container = document.querySelector('.place');
         let card  = document.createElement('div');
@@ -184,7 +223,7 @@
         container.appendChild(card);
 
 
-        let cards = document.querySelectorAll('button');
+        let cards = document.querySelectorAll('.btn-success');
        cards.forEach(item => {
        item.addEventListener('click', function(){
           console.log('I was clicked');
