@@ -97,6 +97,7 @@
               >Backoffice</a
             >
           </li>
+        
         </ul>
       </div>
     </nav>
@@ -122,13 +123,14 @@
    
        window.onload = async () => {
         let dataDiv  = document.querySelector('.box'); 
+        try {
         let data = await getData();
         if(data.length > 0) {
           data.forEach(element => {
     
              dataDiv.innerHTML += `
           <div class="col-12 item" style="display:flex; justify-content: space-between">
-            <img class="img-top" src="${element.imageUrl}" alt="Item image">
+            <a href="detail.html?id=${element.id}"><img class="img-top" src="${element.imageUrl}" alt="Item image"></a>
         
                 <span>${element.name}</span>
                 <span>${element.description}</span>
@@ -146,6 +148,11 @@
         }
        }
 
+       catch (err) {
+          console.log("err", err);
+          alert(err);
+        }};
+      
 
 
 
